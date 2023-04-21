@@ -232,4 +232,27 @@ RSpec.describe 'Merchant Dashboard/Show Page' do
       expect('Wednesday, April 12, 2023').to appear_before('Thursday, April 13, 2023')
     end
   end
+  
+  describe 'displays links for discounts and tests path' do
+    it 'should display a link to the bulk discounts index page' do
+      visit "/merchants/#{merchant.id}/dashboard"
+
+      expect(page).to have_link("My Discounts")
+
+      click_link("My Discounts")
+
+      expect(current_path).to eq(merchant_discounts_path)
+    end 
+  end
 end
+
+# 1: Merchant Bulk Discounts Index
+
+# As a merchant
+# When I visit my merchant dashboard
+# Then I see a link to view all my discounts
+# When I click this link
+# Then I am taken to my bulk discounts index page
+# Where I see all of my bulk discounts including their
+# percentage discount and quantity thresholds
+# And each bulk discount listed includes a link to its show page
