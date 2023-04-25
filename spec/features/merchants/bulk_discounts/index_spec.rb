@@ -61,7 +61,7 @@ RSpec.describe 'Merchant/bulk_discount index page', type: :feature do
 
     it 'should display a button to delete a bulk discount' do
       visit merchant_bulk_discounts_path(merchant)
-      save_and_open_page
+      
       expect(page).to have_content(bulk_discount_1.id)
       expect(page).to have_content(bulk_discount_2.id)
       expect(page).to have_button("Delete Bulk Discount #{bulk_discount_1.id}")
@@ -74,10 +74,3 @@ RSpec.describe 'Merchant/bulk_discount index page', type: :feature do
     end
   end
 end
-
-# As a merchant
-# When I visit my bulk discounts index
-# Then next to each bulk discount I see a link to delete it
-# When I click this link
-# Then I am redirected back to the bulk discounts index page
-# And I no longer see the discount listed
