@@ -53,4 +53,31 @@ RSpec.describe 'Merchant/bulk_discount index page', type: :feature do
       expect(current_path).to eq(new_merchant_bulk_discount_path(merchant))
     end
   end
+
+  describe 'Displays a button to delete an exisitng bulk discount' do
+    let!(:bulk_discount_1) { merchant.bulk_discounts.create!(percentage_discount: 15, quantity_threshold: 10, merchant_id: merchant.id) }
+    let!(:bulk_discount_2) { merchant.bulk_discounts.create!(percentage_discount: 30, quantity_threshold: 15, merchant_id: merchant.id) }
+    let!(:bulk_discount_3) { merchant_1.bulk_discounts.create!(percentage_discount: 20, quantity_threshold: 10, merchant_id: merchant_1.id) }
+
+    it 'should display a button to delete a bulk discount' do
+      visit merchant_bulk_discounts_path(merchant)
+      save_and_open_page
+      expect(page).to have_content(bulk_discount_1.id)
+      expect(page).to have_content(bulk_discount_2.id)
+      expect(page).to have_button("Delete Bulk Discount #{bulk_discount_1.id}")
+
+      click_button("Delete Bulk Discount #{bulk_discount_1.id}")
+      
+      expect(current_path).to eq(merchant_bulk_discounts_path(merchant))
+      expect(page).to_not have_content(bulk_discount_1.id)
+      expect(page).to have_content(bulk_discount_2.id)
+    end
+  end
 end
+
+# As a merchant
+# When I visit my bulk discounts index
+# Then next to each bulk discount I see a link to delete it
+# When I click this link
+# Then I am redirected back to the bulk discounts index page
+# And I no longer see the discount listed
