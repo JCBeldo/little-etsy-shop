@@ -26,7 +26,7 @@ RSpec.describe 'Merchant/bulk_discount new page', type: :feature do
       click_button("Make New Bulk Discount")
 
       expect(current_path).to eq(merchant_bulk_discounts_path(merchant))
-
+      
       expect(page).to have_content(35)
       expect(page).to have_content(20)
     end
