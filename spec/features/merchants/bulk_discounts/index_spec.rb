@@ -74,3 +74,4 @@ RSpec.describe 'Merchant/bulk_discount index page', type: :feature do
     end
   end
 end
+# save_and_open_page

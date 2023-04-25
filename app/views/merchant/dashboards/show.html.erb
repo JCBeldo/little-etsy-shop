@@ -2,7 +2,7 @@
 
 <div class="item_column">
   <%= content_tag :div, id: "item_index" do %>
-  <%= link_to "My Items", merchant_items_path(@merchant) %>
+  <%= link_to "My Items", merchant_items_path(@merchant), style: "float:right;" %>
   <% end %>
 </div>
 
@@ -13,7 +13,7 @@
 </div>
 
 <div id="my_discounts_index">
-  <%= link_to "My Discounts", merchant_bulk_discounts_path(@merchant) %>
+  <%= link_to "My Discounts", merchant_bulk_discounts_path(@merchant), style: "float:right;" %>
 </div>
 
 <div class="best-customers">

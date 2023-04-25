@@ -1,0 +1,8 @@
+<%= form_with model: [@merchant, @bulk_discount], method: :patch do |form| %>
+  <b><%= form.label :percentage_discount, style: "font-size:25px;" %>
+  <%= form.text_field :percentage_discount, style: "font-size:20px; color:Blue;" %>
+  <%= form.label :quantity_threshold, style: "font-size:25px;"%>
+  <%= form.text_field :quantity_threshold, style: "font-size:20px; color:Blue;" %>
+  <%= form.hidden_field :merchant_id, value: @merchant.id %>
+  <%= form.submit "Update Bulk Discount" %>
+<% end  %>
