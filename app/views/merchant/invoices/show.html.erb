@@ -3,6 +3,7 @@
 <br>
 <ul><b>Created on:</b> <%= @invoice.format_time_stamp %></ul>
 <ul><b>Total Revenue:</b> $<%= @invoice.total_revenue %></ul>
+<ul><b>Total Discounted Revenue:</b> <%= number_to_currency(@invoice.total_discounted_revenue) %></ul>
 <ul><h2>Customer:</h2>
 <ul style="font-size:20px;"><%= @invoice.customer_full_name%></ul>
 <ul style="font-size:20px;">123 Main St.</ul>
@@ -31,7 +32,7 @@ table, th, td {
   </tr>
   <% @invoice.invoice_items.each do |invoice_item| %>
     <tr id="items-<%= invoice_item.item.id %>">
-        <td style="background-color:LightGrey;"><center><%= invoice_item.items_name %></td>
+        <td style="background-color:LightGrey;"><center><%= invoice_item.items_name %>  <%= link_to "Discount Info", merchant_bulk_discount_path(@merchant.id) %></td>
         <td style="background-color:LightGrey;"><center><%= invoice_item.quantity %></td>
         <td style="background-color:LightGrey;"><center>$<%= invoice_item.format_unit_price %></td>
         <td style="background-color:LightGrey; font-size:20px;"><center>
