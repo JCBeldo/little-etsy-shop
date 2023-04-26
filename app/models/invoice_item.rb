@@ -2,6 +2,8 @@ class InvoiceItem < ApplicationRecord
   self.primary_key = :id
   belongs_to :invoice
   belongs_to :item
+  has_one :merchant, through: :item
+  has_many :bulk_discounts, through: :merchant
   has_many :transactions, through: :invoice
 
   enum status: ['pending', 'packaged', 'shipped']
