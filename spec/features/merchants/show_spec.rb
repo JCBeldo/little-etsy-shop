@@ -178,8 +178,8 @@ RSpec.describe 'Merchant Dashboard/Show Page' do
       expect(page).to_not have_content(invoice_3.id)
       expect(page).to_not have_content(invoice_7.id)
       
-      # expect(invoice_4.id).to appear_before(invoice_5.id)
-      # expect(invoice_5.id).to appear_before(invoice_6.id)
+      # expect(invoice_4.id.to_s).to appear_before(invoice_5.id.to_s)
+      # expect(invoice_5.id.to_s).to appear_before(invoice_6.id.to_s)
     
       end
     end
@@ -236,23 +236,12 @@ RSpec.describe 'Merchant Dashboard/Show Page' do
   describe 'displays links for discounts and tests path' do
     it 'should display a link to the bulk discounts index page' do
       visit "/merchants/#{merchant.id}/dashboard"
-
+      
       expect(page).to have_link("My Discounts")
 
       click_link("My Discounts")
 
-      expect(current_path).to eq(merchant_discounts_path)
+      expect(current_path).to eq(merchant_bulk_discounts_path(merchant.id))
     end 
   end
 end
-
-# 1: Merchant Bulk Discounts Index
-
-# As a merchant
-# When I visit my merchant dashboard
-# Then I see a link to view all my discounts
-# When I click this link
-# Then I am taken to my bulk discounts index page
-# Where I see all of my bulk discounts including their
-# percentage discount and quantity thresholds
-# And each bulk discount listed includes a link to its show page
