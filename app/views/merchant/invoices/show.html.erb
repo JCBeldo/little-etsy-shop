@@ -32,7 +32,7 @@ table, th, td {
   </tr>
   <% @invoice.invoice_items.each do |invoice_item| %>
     <tr id="items-<%= invoice_item.item.id %>">
-        <td style="background-color:LightGrey;"><center><%= invoice_item.items_name %></td>
+        <td style="background-color:LightGrey;"><center><%= invoice_item.items_name %>  <%= link_to "Discount Info", merchant_bulk_discount_path(@merchant.id) %></td>
         <td style="background-color:LightGrey;"><center><%= invoice_item.quantity %></td>
         <td style="background-color:LightGrey;"><center>$<%= invoice_item.format_unit_price %></td>
         <td style="background-color:LightGrey; font-size:20px;"><center>
